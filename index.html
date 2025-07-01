@@ -1,29 +1,541 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TeamWalletX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeamWalletX - Sports Team Management Made Simple</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8af724;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #8af724;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #8af724, #6dd419);
+            color: black;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(138, 247, 36, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #8af724, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #8af724, #6dd419);
+            color: black;
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(138, 247, 36, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 16px 32px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: #8af724;
+            background: rgba(138, 247, 36, 0.1);
+        }
+
+        /* Phone Mockups */
+        .phone-mockups {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+        }
+
+        .phone {
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(145deg, #2a2a3e, #1a1a2e);
+            border-radius: 25px;
+            padding: 20px 15px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .phone:hover {
+            transform: translateY(-10px);
+        }
+
+        .phone-1 {
+            transform: rotate(-15deg) translateX(-50px);
+            z-index: 1;
+        }
+
+        .phone-2 {
+            transform: rotate(0deg);
+            z-index: 3;
+        }
+
+        .phone-3 {
+            transform: rotate(15deg) translateX(50px);
+            z-index: 2;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8af724;
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(138, 247, 36, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(138, 247, 36, 0.5);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #8af724, #6dd419);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #8af724;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
         }
-        h1 { color: #8af724; }
-        .contact { background: #f4f4f4; padding: 20px; margin-top: 30px; }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(138, 247, 36, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #8af724;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #8af724;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: #8af724;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .phone-mockups {
+                height: 300px;
+            }
+
+            .phone {
+                width: 120px;
+                height: 240px;
+                padding: 12px 8px;
+            }
+
+            .phone-1,
+            .phone-3 {
+                transform: scale(0.8);
+            }
+
+            .phone-2 {
+                transform: scale(1);
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        /* Floating elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(138, 247, 36, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-dot:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-dot:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-dot:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 0.3; }
+            50% { transform: translateY(-20px); opacity: 0.8; }
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to TeamWalletX</h1>
-    <p>TeamWalletX is a sports team management application focused on penalty tracking, player management, and team finances. It's designed for coaches, team administrators, and players.</p>
-    
-    <h2>About</h2>
-    <p>Add information about yourself or your business here.</p>
-    
-    <div class="contact">
-        <h2>Contact</h2>
-        <p>Email: info@teamwalletx.app</p>
-    </div>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">TeamWalletX</div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" class="cta-button">Get the App</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+            <div class="floating-dot"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Manage Your Sports Team Like Never Before</h1>
+                    <p>TeamWalletX revolutionizes sports team management with penalty tracking, player management, and team finances. Perfect for coaches, administrators, and players.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn-primary">
+                            📱 Download Now
+                        </a>
+                        <a href="#features" class="btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="phone-mockups">
+                    <div class="phone phone-1">
+                        <div class="phone-screen">
+                            📊<br>Analytics<br>Dashboard
+                        </div>
+                    </div>
+                    <div class="phone phone-2">
+                        <div class="phone-screen">
+                            🏆<br>TeamWalletX<br>Main Screen
+                        </div>
+                    </div>
+                    <div class="phone phone-3">
+                        <div class="phone-screen">
+                            👥<br>Player<br>Management
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; color: #8af724; margin-bottom: 1rem;">Powerful Features</h2>
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.8);">Everything you need to manage your sports team effectively</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Penalty Tracking</h3>
+                    <p>Track team penalties and fines with automated calculations, payment reminders, and detailed financial reports.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Player Management</h3>
+                    <p>Comprehensive player rosters, performance tracking, and team coordination tools for seamless management.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Gamification</h3>
+                    <p>Achievements, leaderboards, and engagement features that motivate players and build team spirit.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>Detailed insights into team performance, financial health, and player statistics with visual reports.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Payment Processing</h3>
+                    <p>Secure payment tracking and processing for team dues, penalties, and other financial obligations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Privacy & Security</h3>
+                    <p>Enterprise-grade security with encrypted data storage and comprehensive privacy protection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TeamWalletX</h3>
+                    <p>Revolutionizing sports team management with innovative technology and user-friendly design.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@teamwalletx.com</p>
+                    <p>Support: support@teamwalletx.com</p>
+                    <p>Privacy: privacy@teamwalletx.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#features">Features</a></p>
+                    <p><a href="#download">Download</a></p>
+                    <p><a href="#support">Support</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="legal-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="data-protection.html">Data Protection (GDPR)</a>
+                </div>
+                <p>&copy; 2025 TeamWalletX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
