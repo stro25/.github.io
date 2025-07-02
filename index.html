@@ -207,6 +207,17 @@
             font-size: 0.9rem;
         }
 
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .phone-screen.placeholder {
+            /* Keep current styling for placeholder text */
+        }
+
         /* Features Section */
         .features {
             padding: 80px 0;
@@ -437,17 +448,20 @@
                 <div class="phone-mockups">
                     <div class="phone phone-1">
                         <div class="phone-screen">
-                            📊<br>Analytics<br>Dashboard
+                            <!-- Replace with actual screenshot when available -->
+                            <img src="screenshot-analytics.png" alt="Analytics Dashboard" onerror="this.style.display='none'; this.parentElement.innerHTML='📊<br>Analytics<br>Dashboard'; this.parentElement.classList.add('placeholder');">
                         </div>
                     </div>
                     <div class="phone phone-2">
                         <div class="phone-screen">
-                            🏆<br>TeamWalletX<br>Main Screen
+                            <!-- Replace with actual screenshot when available -->
+                            <img src="screenshot-main.png" alt="TeamWalletX Main Screen" onerror="this.style.display='none'; this.parentElement.innerHTML='🏆<br>TeamWalletX<br>Main Screen'; this.parentElement.classList.add('placeholder');">
                         </div>
                     </div>
                     <div class="phone phone-3">
                         <div class="phone-screen">
-                            👥<br>Player<br>Management
+                            <!-- Replace with actual screenshot when available -->
+                            <img src="screenshot-players.png" alt="Player Management" onerror="this.style.display='none'; this.parentElement.innerHTML='👥<br>Player<br>Management'; this.parentElement.classList.add('placeholder');">
                         </div>
                     </div>
                 </div>
@@ -515,6 +529,8 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <p>Email: info@teamwalletx.com</p>
+                    <p>Support: support@teamwalletx.com</p>
+                    <p>Privacy: privacy@teamwalletx.com</p>
                 </div>
                 
                 <div class="footer-section">
