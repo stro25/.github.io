@@ -160,6 +160,23 @@
             background: rgba(204, 255, 0, 0.1);
         }
 
+        /* App Store Badge */
+        .app-store-badge {
+            display: inline-block;
+            margin: 10px; /* Clear space as per Apple guidelines */
+            transition: transform 0.3s ease;
+        }
+
+        .app-store-badge:hover {
+            transform: translateY(-3px);
+        }
+
+        .app-store-badge-img {
+            height: 60px; /* Minimum 40px, using 60px for better visibility */
+            width: auto;
+            display: block;
+        }
+
         /* Phone Mockups */
         .phone-mockups {
             position: relative;
@@ -370,6 +387,10 @@
             .hero-buttons {
                 justify-content: center;
             }
+
+            .app-store-badge-img {
+                height: 50px; /* Slightly smaller on mobile */
+            }
         }
 
         /* Floating elements */
@@ -426,7 +447,7 @@
                     <li><a href="#features">Features</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="#" class="cta-button">Get the App</a></li>
+                    <li><a href="https://apps.apple.com/at/app/teamwalletx/id6747883595" class="cta-button" target="_blank" rel="noopener">Get the App</a></li>
                 </ul>
             </nav>
         </div>
@@ -446,8 +467,8 @@
                     <h1>Manage Your Sports Team Like Never Before</h1>
                     <p>TeamWalletX revolutionizes sports team management with penalty tracking, player management, and team finances. Perfect for coaches, administrators, and players.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="btn-primary">
-                            📱 Download Now
+                        <a href="https://apps.apple.com/app/teamwalletx/id[YOUR_APP_ID]" class="app-store-badge" target="_blank" rel="noopener">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge-img">
                         </a>
                         <a href="#features" class="btn-secondary">Learn More</a>
                     </div>
@@ -554,6 +575,9 @@
                     <a href="data-protection.html">Data Protection (GDPR)</a>
                 </div>
                 <p>&copy; 2025 TeamWalletX. All rights reserved.</p>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.6);">
+                    Apple and App Store are trademarks of Apple Inc., registered in the U.S. and other countries.
+                </p>
             </div>
         </div>
     </footer>
