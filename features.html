@@ -333,13 +333,73 @@
             font-weight: bold;
         }
 
+        /* Pricing Toggle */
+        .pricing-toggle {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .toggle-container {
+            display: inline-flex;
+            background: #1A1A1A;
+            border-radius: 30px;
+            padding: 4px;
+            border: 2px solid rgba(204, 255, 0, 0.3);
+        }
+
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .toggle-btn.active {
+            background: #CCFF00;
+            color: black;
+        }
+
+        .toggle-btn:hover:not(.active) {
+            background: rgba(204, 255, 0, 0.1);
+        }
+
+        /* Pricing Period Styles */
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .price-original {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+
+        .price-savings {
+            background: linear-gradient(45deg, #CCFF00, #66CC00);
+            color: black;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
         /* Comparison Toggle */
         .comparison-toggle {
             text-align: center;
             margin: 2rem 0;
         }
 
-        .toggle-btn {
+        .comparison-toggle .toggle-btn {
             background: #1A1A1A;
             border: 2px solid rgba(204, 255, 0, 0.3);
             color: white;
@@ -350,7 +410,7 @@
             transition: all 0.3s ease;
         }
 
-        .toggle-btn.active {
+        .comparison-toggle .toggle-btn.active {
             background: #CCFF00;
             color: black;
             border-color: #CCFF00;
@@ -506,14 +566,29 @@
     <!-- Pricing Section -->
     <section class="pricing-section">
         <div class="container">
+            <!-- Pricing Toggle -->
+            <div class="pricing-toggle">
+                <div class="toggle-container">
+                    <button class="toggle-btn active" id="monthly-toggle">Monthly</button>
+                    <button class="toggle-btn" id="yearly-toggle">Yearly</button>
+                </div>
+                <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
+                    Save up to 2 months with yearly billing
+                </p>
+            </div>
+            
             <div class="pricing-grid">
                 <!-- Player -->
-                <div class="pricing-card fade-in-up">
+                <div class="pricing-card fade-in-up" data-monthly-price="€1.99" data-yearly-price="€19.99">
                     <div class="role-icon">🎮</div>
                     <h3>Player</h3>
                     <p class="role-subtitle">Perfect for team members</p>
-                    <div class="price">€1.99</div>
-                    <div class="price-period">per month</div>
+                    <div class="price-container">
+                        <div class="price-original" style="display: none;">€23.88</div>
+                        <div class="price">€1.99</div>
+                        <div class="price-period">per month</div>
+                        <div class="price-savings" style="display: none;">Save €3.89</div>
+                    </div>
                     <ul class="features-list">
                         <li>Personal achievements & badges</li>
                         <li>Detailed personal statistics</li>
@@ -527,12 +602,16 @@
                 </div>
 
                 <!-- Staff -->
-                <div class="pricing-card fade-in-up">
+                <div class="pricing-card fade-in-up" data-monthly-price="€3.49" data-yearly-price="€34.99">
                     <div class="role-icon">👥</div>
                     <h3>Staff</h3>
                     <p class="role-subtitle">For team support staff</p>
-                    <div class="price">€3.49</div>
-                    <div class="price-period">per month</div>
+                    <div class="price-container">
+                        <div class="price-original" style="display: none;">€41.88</div>
+                        <div class="price">€3.49</div>
+                        <div class="price-period">per month</div>
+                        <div class="price-savings" style="display: none;">Save €6.89</div>
+                    </div>
                     <ul class="features-list">
                         <li>All Player features</li>
                         <li>Team analytics dashboard</li>
@@ -546,12 +625,16 @@
                 </div>
 
                 <!-- Coach -->
-                <div class="pricing-card featured fade-in-up">
+                <div class="pricing-card featured fade-in-up" data-monthly-price="€4.99" data-yearly-price="€49.99">
                     <div class="role-icon">🏆</div>
                     <h3>Coach</h3>
                     <p class="role-subtitle">Advanced team management</p>
-                    <div class="price">€4.99</div>
-                    <div class="price-period">per month</div>
+                    <div class="price-container">
+                        <div class="price-original" style="display: none;">€59.88</div>
+                        <div class="price">€4.99</div>
+                        <div class="price-period">per month</div>
+                        <div class="price-savings" style="display: none;">Save €9.89</div>
+                    </div>
                     <ul class="features-list">
                         <li>All Staff features</li>
                         <li>Unlimited team size</li>
@@ -565,12 +648,16 @@
                 </div>
 
                 <!-- Admin -->
-                <div class="pricing-card fade-in-up">
+                <div class="pricing-card fade-in-up" data-monthly-price="€6.99" data-yearly-price="€69.99">
                     <div class="role-icon">👑</div>
                     <h3>Admin</h3>
                     <p class="role-subtitle">Complete system control</p>
-                    <div class="price">€6.99</div>
-                    <div class="price-period">per month</div>
+                    <div class="price-container">
+                        <div class="price-original" style="display: none;">€83.88</div>
+                        <div class="price">€6.99</div>
+                        <div class="price-period">per month</div>
+                        <div class="price-savings" style="display: none;">Save €13.89</div>
+                    </div>
                     <ul class="features-list">
                         <li>All Coach features</li>
                         <li>Financial management</li>
@@ -961,6 +1048,55 @@
     </footer>
 
     <script>
+        // Pricing toggle functionality
+        const monthlyToggle = document.getElementById('monthly-toggle');
+        const yearlyToggle = document.getElementById('yearly-toggle');
+        const pricingCards = document.querySelectorAll('.pricing-card');
+
+        function switchPricing(isYearly) {
+            pricingCards.forEach(card => {
+                const monthlyPrice = card.dataset.monthlyPrice;
+                const yearlyPrice = card.dataset.yearlyPrice;
+                const priceElement = card.querySelector('.price');
+                const periodElement = card.querySelector('.price-period');
+                const originalElement = card.querySelector('.price-original');
+                const savingsElement = card.querySelector('.price-savings');
+
+                if (isYearly) {
+                    // Calculate monthly equivalent and savings
+                    const yearlyAmount = parseFloat(yearlyPrice.replace('€', ''));
+                    const monthlyAmount = parseFloat(monthlyPrice.replace('€', ''));
+                    const monthlyEquivalent = (yearlyAmount / 12).toFixed(2);
+                    const totalMonthlyCost = monthlyAmount * 12;
+                    const savings = (totalMonthlyCost - yearlyAmount).toFixed(2);
+
+                    priceElement.textContent = `€${monthlyEquivalent}`;
+                    periodElement.textContent = 'per month (billed yearly)';
+                    originalElement.textContent = `€${monthlyAmount}`;
+                    originalElement.style.display = 'block';
+                    savingsElement.textContent = `Save €${savings}`;
+                    savingsElement.style.display = 'block';
+                } else {
+                    priceElement.textContent = monthlyPrice;
+                    periodElement.textContent = 'per month';
+                    originalElement.style.display = 'none';
+                    savingsElement.style.display = 'none';
+                }
+            });
+        }
+
+        monthlyToggle.addEventListener('click', () => {
+            monthlyToggle.classList.add('active');
+            yearlyToggle.classList.remove('active');
+            switchPricing(false);
+        });
+
+        yearlyToggle.addEventListener('click', () => {
+            yearlyToggle.classList.add('active');
+            monthlyToggle.classList.remove('active');
+            switchPricing(true);
+        });
+
         // Add smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
