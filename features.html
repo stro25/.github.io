@@ -479,10 +479,80 @@
             color: #CCFF00;
         }
 
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .mobile-menu-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-links a:hover,
+        .mobile-menu-links a.active {
+            color: #CCFF00;
+        }
+
+        .mobile-menu-cta {
+            margin-top: 2rem;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
             }
 
             .features-hero h1 {
@@ -551,9 +621,23 @@
                     <li><a href="index.html#contact">Contact</a></li>
                     <li><a href="https://apps.apple.com/at/app/teamwalletx/id6747883595" class="cta-button" target="_blank" rel="noopener">Get the App</a></li>
                 </ul>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">☰</button>
             </nav>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close">×</button>
+        <div class="mobile-menu-links">
+            <a href="index.html">Home</a>
+            <a href="features.html" class="active">Features & Pricing</a>
+            <a href="index.html#contact">Contact</a>
+            <div class="mobile-menu-cta">
+                <a href="https://apps.apple.com/at/app/teamwalletx/id6747883595" class="cta-button" target="_blank" rel="noopener">Get the App</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Features Hero -->
     <section class="features-hero">
@@ -1048,6 +1132,47 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+            // Open mobile menu
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+
+            // Close mobile menu
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+
+            // Close menu when clicking outside
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close menu when clicking on a link
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // Close menu with escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
         // Pricing toggle functionality
         const monthlyToggle = document.getElementById('monthly-toggle');
         const yearlyToggle = document.getElementById('yearly-toggle');
